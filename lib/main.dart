@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -30,7 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
@@ -40,15 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _initializePlatformSpecifics() {
-    var initializationSettingsAndroid = AndroidInitializationSettings('ic_notification');
+    var initializationSettingsAndroid =
+        AndroidInitializationSettings('ic_notification');
 
-    var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid);
+    var initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse res) {
-          debugPrint('payload:${res.payload}');
-        });
+      debugPrint('payload:${res.payload}');
+    });
   }
 
   Future<void> _showNotification() async {
@@ -63,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
       styleInformation: DefaultStyleInformation(true, true),
     );
 
-    var platformChannelSpecifics = NotificationDetails(
-        android: androidChannelSpecifics);
+    var platformChannelSpecifics =
+        NotificationDetails(android: androidChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(
       0, // Notification ID
